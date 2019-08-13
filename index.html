@@ -24,18 +24,20 @@
 
             <div class="form-group">
                 <label for="sourceText">Source Text</label>
-                <input type="text" name="sourceText" id="sourceText" class="form-control" placeholder="Put your text here"
-                    autofocus>
+                <input type="text" name="sourceText" id="sourceText" class="form-control"
+                    placeholder="Put your text here" autofocus>
             </div>
 
             <div class="form-group">
                 <label for="outputText">Source Text</label>
-                <input type="text" name="outputText" id="outputText" class="form-control" readonly placeholder="Read only, put your text above">
+                <input type="text" name="outputText" id="outputText" class="form-control" readonly
+                    placeholder="Read only, put your text above">
             </div>
 
             <div class="row no-gutters">
                 <div class="col-3">
-                    <button type="submit" id="btnConvert" class="btn btn-primary btn-block" style="padding: 11px 0">Convert</button>
+                    <button type="submit" id="btnConvert" class="btn btn-primary btn-block"
+                        style="padding: 11px 0">Convert</button>
                 </div>
                 <div class="col-9" style="padding-left: 15px">
                     <div class="alert alert-success" role="alert" id="alertText" style="display:none">
@@ -48,6 +50,7 @@
 
     </div>
 
+    <script src="script.js"></script>
     <script>
         var sourceText = document.getElementById("sourceText");
         var outputText = document.getElementById("outputText");
@@ -97,71 +100,6 @@
                 console.log('clear timeout');
                 clearTimeout(myTimer);
             }
-        }
-
-        function prepareWords(words) {
-            var tag = "";
-            for (i = 0; i < words.length; i++) {
-                word = removeInvalidChars(words[i]);
-                tag += capitalizeFirstLetter(word);
-            }
-            return tag;
-        }
-
-        function removeInvalidChars(word) {
-            newWord = word;
-            newWord = newWord.replace(/\{0\}/g, '_');
-            newWord = newWord.replace(/\{1\}/g, '_');
-            newWord = newWord.replace(/\{2\}/g, '_');
-            newWord = newWord.replace(/\{3\}/g, '_');
-            newWord = newWord.replace(/\{4\}/g, '_');
-            newWord = newWord.replace(/\./g, '');
-            newWord = newWord.replace(/\,/g, '');
-            newWord = newWord.replace(/\//g, '');
-            newWord = newWord.replace(/\{/g, '');
-            newWord = newWord.replace(/\}/g, '');
-            newWord = newWord.replace(/\[/g, '');
-            newWord = newWord.replace(/\]/g, '');
-            newWord = newWord.replace(/\(/g, '');
-            newWord = newWord.replace(/\)/g, '');
-            newWord = newWord.replace(/\'/g, '');
-            newWord = newWord.replace(/\"/g, '');
-            newWord = newWord.replace(/\:/g, '');
-            newWord = newWord.replace(/\|/g, '');
-            newWord = newWord.replace(/\!/g, '');
-            newWord = newWord.replace(/\?/g, '');
-            return removerAcentos(newWord);
-        }
-
-        function removerAcentos(newStringComAcento) {
-            var string = newStringComAcento;
-            var mapaAcentosHex = {
-                a: /[\xE0-\xE6]/g,
-                A: /[\xC0-\xC6]/g,
-                e: /[\xE8-\xEB]/g,
-                E: /[\xC8-\xCB]/g,
-                i: /[\xEC-\xEF]/g,
-                I: /[\xCC-\xCF]/g,
-                o: /[\xF2-\xF6]/g,
-                O: /[\xD2-\xD6]/g,
-                u: /[\xF9-\xFC]/g,
-                U: /[\xD9-\xDC]/g,
-                c: /\xE7/g,
-                C: /\xC7/g,
-                n: /\xF1/g,
-                N: /\xD1/g
-            };
-
-            for (var letra in mapaAcentosHex) {
-                var expressaoRegular = mapaAcentosHex[letra];
-                string = string.replace(expressaoRegular, letra);
-            }
-
-            return string;
-        }
-
-        function capitalizeFirstLetter(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
         }
     </script>
 
